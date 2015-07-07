@@ -1,7 +1,6 @@
 # textbackend
 
 testbackend used to create a row/level organized content array.
-the tree looks like this:
 
     content[
       { ... }
