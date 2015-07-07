@@ -1,4 +1,4 @@
-# textbackend
+# textbackend [![Build Status](https://travis-ci.org/writescript/textbackend.svg?branch=master)](https://travis-ci.org/writescript/textbackend)
 
 testbackend used to create a row/level organized content array.
 
