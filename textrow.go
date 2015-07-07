@@ -1,11 +1,12 @@
 package textbackend
 
-// TextRow to store the level and string of one textline
+// TextRow to store the level and text of one row.
 type TextRow struct {
-	Level int
-	Text  string
+	Level int    `json:"level"`
+	Text  string `json:"text"`
 }
 
+// GetLevelWhitespace returns the whitespace for the row.
 func (t *TextRow) GetLevelWhitespace(whitespace string) string {
 	tmp := ""
 	if t.Level > 0 {
@@ -16,6 +17,7 @@ func (t *TextRow) GetLevelWhitespace(whitespace string) string {
 	return tmp
 }
 
+// GetString returns the row with whitespace and text
 func (t *TextRow) GetString(whitespace string) string {
 	return t.GetLevelWhitespace(whitespace) + t.Text
 }

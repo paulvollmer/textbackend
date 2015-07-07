@@ -1,5 +1,9 @@
 package textbackend
 
+import (
+	"encoding/json"
+)
+
 // TextContent store a ContentLine list
 type TextContent struct {
 	Rows  []TextRow
@@ -52,6 +56,8 @@ func (t *TextContent) GetTotalLines() int {
 	return len(t.Rows)
 }
 
+// TODO: add masterLevel to get methods
+
 // GetString renders out the content as string and you can set the type of linebreak and level char
 func (t *TextContent) GetString(linebreak, levelSign string) string {
 	contentStr := ""
@@ -62,18 +68,17 @@ func (t *TextContent) GetString(linebreak, levelSign string) string {
 	return contentStr
 }
 
-// TODO: GetStringArray return the content as array.
+// GetStringArray return the content as array.
 func (t *TextContent) GetStringArray(whitespace string) []string {
 	tmp := []string{}
 	for _, v := range t.Rows {
 		tmpRow := v.GetLevelWhitespace(whitespace) + v.Text
 		tmp = append(tmp, tmpRow)
 	}
-	// TODO: add masterLevel
 	return tmp
 }
 
-// TODO: GetJSON return the content as array with row objects.
-// func (t *TextContent) GetJSON() string {
-// 	return "json..."
-// }
+// GetJSON return the content as array with row objects.
+func (t *TextContent) GetJSON() ([]byte, error) {
+	return json.Marshal(t.Rows)
+}

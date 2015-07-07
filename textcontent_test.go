@@ -17,6 +17,11 @@ func TestTextContent_GetString(t *testing.T) {
 		t.Error("GetString broken")
 	}
 
+	tmpJSON, err := textContent.GetJSON()
+	if err != nil && string(tmpJSON) != `[{"level":0,"text":"hello world"}]` {
+		t.Error("GetString broken")
+	}
+
 	if textContent.GetTotalLines() != 1 {
 		t.Error("GetTotalLines broken")
 	}
