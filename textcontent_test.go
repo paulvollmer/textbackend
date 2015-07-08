@@ -8,7 +8,7 @@ func TestTextContent_GetString(t *testing.T) {
 	textContent := TextContent{}
 
 	textContent.Writeln("hello world")
-	if textContent.GetString("\t", "\n") != "hello world\n" {
+	if textContent.GetString("\n", "\t") != "hello world\n" {
 		t.Error("GetString broken")
 	}
 
