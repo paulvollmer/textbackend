@@ -59,11 +59,11 @@ func (t *TextContent) GetTotalLines() int {
 // TODO: add masterLevel to get methods
 
 // GetString renders out the content as string and you can set the type of linebreak and level char
-func (t *TextContent) GetString(linebreak, levelSign string) string {
+func (t *TextContent) GetString(linebreak, whitespace string) string {
 	contentStr := ""
 	for _, v := range t.Rows {
-		// fmt.Printf("%#v\n", v.Text)
-		contentStr += v.Text + "\n"
+		tmpRow := v.GetLevelWhitespace(whitespace) + v.Text
+		contentStr += tmpRow + "\n"
 	}
 	return contentStr
 }
