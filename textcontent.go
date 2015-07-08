@@ -62,8 +62,7 @@ func (t *TextContent) GetTotalLines() int {
 func (t *TextContent) GetString(linebreak, whitespace string) string {
 	contentStr := ""
 	for _, v := range t.Rows {
-		tmpRow := v.GetLevelWhitespace(whitespace) + v.Text
-		contentStr += tmpRow + "\n"
+		contentStr += v.GetLevelWhitespace(whitespace) + v.Text + linebreak
 	}
 	return contentStr
 }
