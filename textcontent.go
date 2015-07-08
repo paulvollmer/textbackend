@@ -46,7 +46,7 @@ func (t *TextContent) GetLevel() int {
 	return t.level
 }
 
-// SetLevel
+// SetLevel set the level to a specific depth
 func (t *TextContent) SetLevel(newLevel int) {
 	t.level = newLevel
 }
