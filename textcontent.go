@@ -6,57 +6,63 @@ import (
 
 // TextContent store a ContentLine list
 type TextContent struct {
-	Rows  []TextRow
-	level int // the current level
+	Rows         []TextRow
+	CurrentLevel int // the current level
 }
 
 // Reset the content data and the current level value
 func (t *TextContent) Reset() {
 	t.Rows = []TextRow{}
-	t.level = 0
+	t.CurrentLevel = 0
 }
 
 // Writeln append a line to the content array
 func (t *TextContent) Writeln(text string) {
-	t.Rows = append(t.Rows, TextRow{t.level, text})
+	t.Rows = append(t.Rows, TextRow{t.CurrentLevel, text})
 }
 
-// TODO: Write
-// func (t *TextContent) Write() {
-// }
+// Write writes text to the latest row
+func (t *TextContent) Write(text string) {
+	if len(t.Rows) != 0 {
+		t.Rows[len(t.Rows)-1].Text += text
+	} else {
+		t.Writeln(text)
+	}
+}
 
-// TODO: WriteTo writes text to a specific line.
-// func (t *TextContent) WriteTo() {
-// }
+// WriteTo writes text to a specific line.
+func (t *TextContent) WriteTo(row int, text string) {
+	if row >= 0 && row <= len(t.Rows) {
+		t.Rows[row-1].Text += text
+	}
+}
 
 // PushLevel pushes into the next level.
 func (t *TextContent) PushLevel() {
-	t.level++
+	t.CurrentLevel++
 }
 
 // PopLevel pop out from the level.
 func (t *TextContent) PopLevel() {
-	if t.level > 0 {
-		t.level--
+	if t.CurrentLevel > 0 {
+		t.CurrentLevel--
 	}
 }
 
 // GetLevel return the current level depth as int.
 func (t *TextContent) GetLevel() int {
-	return t.level
+	return t.CurrentLevel
 }
 
 // SetLevel set the level to a specific depth
-func (t *TextContent) SetLevel(newLevel int) {
-	t.level = newLevel
+func (t *TextContent) SetLevel(depth int) {
+	t.CurrentLevel = depth
 }
 
 // GetTotalLines returns the number of lines.
 func (t *TextContent) GetTotalLines() int {
 	return len(t.Rows)
 }
-
-// TODO: add masterLevel to get methods
 
 // GetString renders out the content as string and you can set the type of linebreak and level char
 func (t *TextContent) GetString(linebreak, whitespace string) string {
