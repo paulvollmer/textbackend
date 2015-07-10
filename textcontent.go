@@ -1,3 +1,13 @@
+/*
+Package textbackend simple usage example:
+
+    textContent := TextContent{}
+    textContent.Writeln("hello world")
+    textContent.PushLevel()
+    textContent.Writeln("one more line")
+    textContent.PopLevel()
+    theText := textContent.GetStringArray("\t")
+*/
 package textbackend
 
 import (
