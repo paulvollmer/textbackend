@@ -1,6 +1,7 @@
 # textbackend [![Build Status](https://travis-ci.org/writescript/textbackend.svg?branch=master)](https://travis-ci.org/writescript/textbackend)
 
-testbackend used to create a row/level organized content array.
+testbackend to create row/level organized text content.  
+the data model of one textbackend looks like this:
 
     content[
       { ... }
@@ -10,7 +11,7 @@ testbackend used to create a row/level organized content array.
       { ... }
     ]
 
-Docs can be found at [![GoDoc](https://godoc.org/github.com/writescript/textbackend?status.svg)](https://godoc.org/github.com/writescript/textbackend)
+More information and API-Docs can be found at [![GoDoc](https://godoc.org/github.com/writescript/textbackend?status.svg)](https://godoc.org/github.com/writescript/textbackend)
 
 ## License
 This code is published under an MIT license. See [LICENSE](LICENSE) file for more information.
