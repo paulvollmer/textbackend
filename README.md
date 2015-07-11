@@ -1,4 +1,4 @@
-# textbackend [![Build Status](https://travis-ci.org/writescript/textbackend.svg?branch=master)](https://travis-ci.org/writescript/textbackend)
+# textbackend [![Build Status](https://travis-ci.org/writescript/textbackend.svg?branch=master)](https://travis-ci.org/writescript/textbackend) [![Coverage Status](https://coveralls.io/repos/writescript/textbackend/badge.svg?branch=master&service=github)](https://coveralls.io/github/writescript/textbackend?branch=master)
 
 testbackend to create row/level organized text content.  
 the data model of one textbackend looks like this:
