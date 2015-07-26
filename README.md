@@ -1,7 +1,9 @@
 # textbackend [![Build Status](https://travis-ci.org/writescript/textbackend.svg?branch=master)](https://travis-ci.org/writescript/textbackend) [![Coverage Status](https://coveralls.io/repos/writescript/textbackend/badge.svg?branch=master&service=github)](https://coveralls.io/github/writescript/textbackend?branch=master)
 
-testbackend to create row/level organized text content.  
-the data model of one textbackend looks like this:
+simple textbackend to create a row/level organized content array.  
+it is implemented in golang and docs can be found at [![GoDoc](https://godoc.org/github.com/writescript/textbackend?status.svg)](https://godoc.org/github.com/writescript/textbackend)
+
+_pseudo data model..._
 
     content[
       { ... }
@@ -10,8 +12,6 @@ the data model of one textbackend looks like this:
       { level: 1, text: "..." }
       { ... }
     ]
-
-More information and API-Docs can be found at [![GoDoc](https://godoc.org/github.com/writescript/textbackend?status.svg)](https://godoc.org/github.com/writescript/textbackend)
 
 ## License
 This code is published under an MIT license. See [LICENSE](LICENSE) file for more information.
