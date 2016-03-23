@@ -6,6 +6,11 @@ type TextRow struct {
 	Text  string `json:"text"`
 }
 
+// NewTextRow initialize and return a TextRow object
+func NewTextRow(l int, t string) *TextRow {
+	return &TextRow{l, t}
+}
+
 // GetLevelWhitespace returns the whitespace for the row.
 func (t *TextRow) GetLevelWhitespace(whitespace string) string {
 	tmp := ""
