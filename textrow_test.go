@@ -26,3 +26,16 @@ func TestTextRow_GetString(t *testing.T) {
 		t.Error("GetString failed")
 	}
 }
+
+// benchmarks
+
+var result string
+
+func Benchmark_TextRow(b *testing.B) {
+	var r string
+	for n := 0; n < b.N; n++ {
+		row := NewTextRow(2, "hello world")
+		r = row.GetString("<br>")
+	}
+	result = r
+}
