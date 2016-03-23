@@ -1,5 +1,6 @@
 language: go
 
+# go1.1 does not support -coverprofile flag. because of this, no go1.1 test at the moment
 go:
   - 1.2
   - 1.3
