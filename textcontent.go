@@ -20,6 +20,11 @@ type TextContent struct {
 	CurrentLevel int // the current level
 }
 
+func NewTextContent() *TextContent {
+	c := new(TextContent)
+	return c
+}
+
 // Reset the content data and the current level value
 func (t *TextContent) Reset() {
 	t.Rows = []TextRow{}
