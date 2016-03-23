@@ -123,5 +123,5 @@ func Benchmark_TextContent(b *testing.B) {
 		row := NewTextRow(2, "hello world")
 		r = row.GetString("<br>")
 	}
-	result = r
+	resultTextContent = r
 }
