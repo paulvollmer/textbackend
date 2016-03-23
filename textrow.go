@@ -2,12 +2,12 @@ package textbackend
 
 // TextRow to store the level and text of one row.
 type TextRow struct {
-	Level int    `json:"level"`
+	Level uint8  `json:"level"`
 	Text  string `json:"text"`
 }
 
 // NewTextRow initialize and return a TextRow object
-func NewTextRow(l int, t string) *TextRow {
+func NewTextRow(l uint8, t string) *TextRow {
 	return &TextRow{l, t}
 }
 
@@ -15,7 +15,8 @@ func NewTextRow(l int, t string) *TextRow {
 func (t *TextRow) GetLevelWhitespace(whitespace string) string {
 	tmp := ""
 	if t.Level > 0 {
-		for i := 0; i < t.Level; i++ {
+		var i uint8
+		for i = 0; i < t.Level; i++ {
 			tmp += whitespace
 		}
 	}
