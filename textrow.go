@@ -11,6 +11,16 @@ func NewTextRow(l uint8, t string) *TextRow {
 	return &TextRow{l, t}
 }
 
+// GetLevel return the level of the TextRow
+func (t *TextRow) GetLevel() uint8 {
+	return t.Level
+}
+
+// GetText return the text of the TextRow
+func (t *TextRow) GetText() string {
+	return t.Text
+}
+
 // GetLevelWhitespace returns the whitespace for the row.
 func (t *TextRow) GetLevelWhitespace(whitespace string) string {
 	tmp := ""
