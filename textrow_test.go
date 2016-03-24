@@ -22,6 +22,10 @@ func Test_TextRow_GetLevelWhitespace(t *testing.T) {
 	if textRow.GetLevelWhitespace("\t") != "\t" {
 		t.Error("GetLevelWhitespace failed")
 	}
+	textRow.Level = 3
+	if textRow.GetLevelWhitespace("\t") != "\t\t\t" {
+		t.Error("GetLevelWhitespace failed")
+	}
 }
 
 func Test_TextRow_GetString(t *testing.T) {
