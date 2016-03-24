@@ -89,7 +89,7 @@ func Test_TextContent_GetTotalLines(t *testing.T) {
 func Test_TextContent_GetString(t *testing.T) {
 	textContent := NewTextContent()
 	textContent.Writeln("hello world")
-	if textContent.GetString("\n", "\t") != "hello world\n" {
+	if string(textContent.Get("\n", "\t")) != "hello world\n" {
 		t.Error("GetString failed")
 	}
 }
@@ -115,13 +115,16 @@ func Test_TextContent_GetJSON(t *testing.T) {
 
 // benchmarks
 
-var resultTextContent string
+var resultTextContent []byte
 
 func Benchmark_TextContent(b *testing.B) {
-	var r string
+	var r []byte
 	for n := 0; n < b.N; n++ {
-		row := NewTextRow(2, "hello world")
-		r = row.GetString("<br>")
+		row := NewTextContent()
+		row.Writeln("hello world")
+		row.Writeln("more text here")
+		row.Writeln("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+		r = row.Get("\n", "<br>")
 	}
 	resultTextContent = r
 }

@@ -81,20 +81,22 @@ func (t *TextContent) GetTotalLines() int {
 }
 
 // GetString renders out the content as string and you can set the type of linebreak and level char
-func (t *TextContent) GetString(linebreak, whitespace string) string {
-	contentStr := ""
-	for _, v := range t.Rows {
-		contentStr += v.GetString(whitespace) + linebreak
+func (t *TextContent) Get(linebreak, whitespace string) []byte {
+	buf := []byte{}
+	for i := 0; i < len(t.Rows); i++ {
+		buf = append(buf, t.Rows[i].GetString(whitespace)...)
+		buf = append(buf, linebreak...)
 	}
-	return contentStr
+	return buf
 }
 
 // GetStringArray return the content as array.
 func (t *TextContent) GetStringArray(whitespace string) []string {
+	// tmp := []string{}
 	tmp := []string{}
-	for _, v := range t.Rows {
-		tmpRow := v.GetString(whitespace)
-		tmp = append(tmp, tmpRow)
+	for i := 0; i < len(t.Rows); i++ {
+		// for _, v := range t.Rows {
+		tmp = append(tmp, t.Rows[i].GetString(whitespace))
 	}
 	return tmp
 }
