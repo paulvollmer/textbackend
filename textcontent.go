@@ -80,7 +80,7 @@ func (t *TextContent) GetTotalLines() int {
 	return len(t.Rows)
 }
 
-// GetString renders out the content as string and you can set the type of linebreak and level char
+// Get renders out the content as string and you can set the type of linebreak and level char
 func (t *TextContent) Get(linebreak, whitespace string) []byte {
 	buf := []byte{}
 	for i := 0; i < len(t.Rows); i++ {

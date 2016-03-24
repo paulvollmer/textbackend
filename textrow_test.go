@@ -44,7 +44,7 @@ func Test_TextRow_GetString(t *testing.T) {
 
 var resultTextRow string
 
-func benchmark_TextRow(l uint8, c string, b *testing.B) {
+func benchmarkTextRow(l uint8, c string, b *testing.B) {
 	var r string
 	for n := 0; n < b.N; n++ {
 		row := NewTextRow(l, c)
@@ -54,20 +54,20 @@ func benchmark_TextRow(l uint8, c string, b *testing.B) {
 }
 
 func Benchmark_TextRow_level4(b *testing.B) {
-	benchmark_TextRow(4, "hello world", b)
+	benchmarkTextRow(4, "hello world", b)
 }
 func Benchmark_TextRow_level8(b *testing.B) {
-	benchmark_TextRow(8, "hello world", b)
+	benchmarkTextRow(8, "hello world", b)
 }
 func Benchmark_TextRow_level16(b *testing.B) {
-	benchmark_TextRow(16, "hello world", b)
+	benchmarkTextRow(16, "hello world", b)
 }
 func Benchmark_TextRow_small(b *testing.B) {
-	benchmark_TextRow(2, "hello world", b)
+	benchmarkTextRow(2, "hello world", b)
 }
 func Benchmark_TextRow_middle(b *testing.B) {
-	benchmark_TextRow(2, "hello world, this is just a test", b)
+	benchmarkTextRow(2, "hello world, this is just a test", b)
 }
 func Benchmark_TextRow_large(b *testing.B) {
-	benchmark_TextRow(2, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", b)
+	benchmarkTextRow(2, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", b)
 }
