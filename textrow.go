@@ -23,14 +23,15 @@ func (t *TextRow) GetText() string {
 
 // GetLevelWhitespace returns the whitespace for the row.
 func (t *TextRow) GetLevelWhitespace(whitespace string) string {
-	tmp := ""
 	if t.Level > 0 {
+		buf := []byte(whitespace)
 		var i uint8
-		for i = 0; i < t.Level; i++ {
-			tmp += whitespace
+		for i = 1; i < t.Level; i++ {
+			buf = append(buf, whitespace...)
 		}
+		return string(buf)
 	}
-	return tmp
+	return ""
 }
 
 // GetString returns the row with whitespace and text

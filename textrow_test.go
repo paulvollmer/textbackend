@@ -25,15 +25,12 @@ func Test_TextRow_GetLevelWhitespace(t *testing.T) {
 }
 
 func Test_TextRow_GetString(t *testing.T) {
-	textRow := TextRow{}
-	textRow.Text = "hello world"
+	textRow := NewTextRow(0, "hello world")
 	if textRow.GetString("\t") != "hello world" {
 		t.Error("GetString failed")
 	}
 
-	textRow2 := TextRow{}
-	textRow2.Level = 1
-	textRow2.Text = "hello world"
+	textRow2 := NewTextRow(1, "hello world")
 	if textRow2.GetString("\t") != "\thello world" {
 		t.Error("GetString failed")
 	}
