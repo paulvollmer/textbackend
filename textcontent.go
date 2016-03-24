@@ -17,7 +17,13 @@ import (
 // TextContent store a ContentLine list
 type TextContent struct {
 	Rows         []TextRow
-	CurrentLevel int // the current level
+	CurrentLevel uint8 // the current level
+}
+
+// NewTextContent initialize and return a TextContent object
+func NewTextContent() *TextContent {
+	c := new(TextContent)
+	return c
 }
 
 // Reset the content data and the current level value
@@ -60,12 +66,12 @@ func (t *TextContent) PopLevel() {
 }
 
 // GetLevel return the current level depth as int.
-func (t *TextContent) GetLevel() int {
+func (t *TextContent) GetLevel() uint8 {
 	return t.CurrentLevel
 }
 
 // SetLevel set the level to a specific depth
-func (t *TextContent) SetLevel(depth int) {
+func (t *TextContent) SetLevel(depth uint8) {
 	t.CurrentLevel = depth
 }
 
@@ -74,21 +80,21 @@ func (t *TextContent) GetTotalLines() int {
 	return len(t.Rows)
 }
 
-// GetString renders out the content as string and you can set the type of linebreak and level char
-func (t *TextContent) GetString(linebreak, whitespace string) string {
-	contentStr := ""
-	for _, v := range t.Rows {
-		contentStr += v.GetLevelWhitespace(whitespace) + v.Text + linebreak
+// Get renders out the content as string and you can set the type of linebreak and level char
+func (t *TextContent) Get(linebreak, whitespace string) []byte {
+	buf := []byte{}
+	for i := 0; i < len(t.Rows); i++ {
+		buf = append(buf, t.Rows[i].GetString(whitespace)...)
+		buf = append(buf, linebreak...)
 	}
-	return contentStr
+	return buf
 }
 
 // GetStringArray return the content as array.
 func (t *TextContent) GetStringArray(whitespace string) []string {
 	tmp := []string{}
-	for _, v := range t.Rows {
-		tmpRow := v.GetLevelWhitespace(whitespace) + v.Text
-		tmp = append(tmp, tmpRow)
+	for i := 0; i < len(t.Rows); i++ {
+		tmp = append(tmp, t.Rows[i].GetString(whitespace))
 	}
 	return tmp
 }
