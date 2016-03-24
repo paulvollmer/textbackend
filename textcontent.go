@@ -92,10 +92,8 @@ func (t *TextContent) Get(linebreak, whitespace string) []byte {
 
 // GetStringArray return the content as array.
 func (t *TextContent) GetStringArray(whitespace string) []string {
-	// tmp := []string{}
 	tmp := []string{}
 	for i := 0; i < len(t.Rows); i++ {
-		// for _, v := range t.Rows {
 		tmp = append(tmp, t.Rows[i].GetString(whitespace))
 	}
 	return tmp
