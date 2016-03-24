@@ -1,6 +1,6 @@
 # textbackend Makefile
 
-VERSION=0.0.1
+VERSION=0.1.0
 
 test:
 	@echo "\nrun textbackend v${VERSION} tests & benchmark\n"
