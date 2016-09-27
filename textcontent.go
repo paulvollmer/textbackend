@@ -12,6 +12,8 @@ package textbackend
 
 import (
 	"encoding/json"
+	"io/ioutil"
+	"os"
 )
 
 // TextContent store a ContentLine list
@@ -102,4 +104,9 @@ func (t *TextContent) GetStringArray(whitespace string) []string {
 // GetJSON return the content as array with row objects.
 func (t *TextContent) GetJSON() ([]byte, error) {
 	return json.Marshal(t.Rows)
+}
+
+// WriteFile write the text content to a file.
+func (t *TextContent) WriteFile(filename string, perm os.FileMode, linebreak, whitespace string) error {
+	return ioutil.WriteFile(filename, t.Get(linebreak, whitespace), perm)
 }
