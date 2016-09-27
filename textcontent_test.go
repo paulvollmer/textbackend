@@ -109,7 +109,16 @@ func Test_TextContent_GetJSON(t *testing.T) {
 	textContent.Writeln("hello world")
 	tmpJSON, err := textContent.GetJSON()
 	if err != nil || string(tmpJSON) != `[{"level":0,"text":"hello world"}]` {
-		t.Error("GetString broken")
+		t.Error("GetString failed")
+	}
+}
+
+func Test_TextContent_WriteFile(t *testing.T) {
+	textContent := NewTextContent()
+	textContent.Writeln("hello world")
+	err := textContent.WriteFile("test.txt", 0666, "\n", "\t")
+	if err != nil {
+		t.Error("Writefile failed")
 	}
 }
 
