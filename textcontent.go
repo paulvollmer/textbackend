@@ -14,6 +14,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
 // TextContent store a ContentLine list
@@ -26,6 +27,26 @@ type TextContent struct {
 func NewTextContent() *TextContent {
 	c := new(TextContent)
 	return c
+}
+
+// ReadFile read a file and return a TextContent object
+func ReadFile(filename, whitespace, linebreak string) (*TextContent, error) {
+	c := NewTextContent()
+	data, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return c, err
+	}
+	lines := strings.Split(string(data), linebreak)
+	for _, line := range lines {
+		r := NewTextRowFromString(line, whitespace)
+		c.AppendRow(*r)
+	}
+	return c, nil
+}
+
+// AppendRow add a TextRow object to the Rows array
+func (t *TextContent) AppendRow(r TextRow) {
+	t.Rows = append(t.Rows, r)
 }
 
 // Reset the content data and the current level value
