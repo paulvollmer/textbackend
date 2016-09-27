@@ -21,7 +21,7 @@ func (t *TextRow) GetText() string {
 	return t.Text
 }
 
-// GetLevelWhitespace returns the whitespace for the row.
+// GetLevelWhitespace returns the whitespace for the row
 func (t *TextRow) GetLevelWhitespace(whitespace string) string {
 	if t.Level > 0 {
 		buf := []byte(whitespace)
@@ -37,4 +37,9 @@ func (t *TextRow) GetLevelWhitespace(whitespace string) string {
 // GetString returns the row with whitespace and text
 func (t *TextRow) GetString(whitespace string) string {
 	return t.GetLevelWhitespace(whitespace) + t.Text
+}
+
+// AppendText add the given string to the text row
+func (t *TextRow) AppendText(text string) {
+	t.Text = t.Text + text
 }

@@ -33,10 +33,17 @@ func Test_TextRow_GetString(t *testing.T) {
 	if textRow.GetString("\t") != "hello world" {
 		t.Error("GetString failed")
 	}
-
 	textRow2 := NewTextRow(1, "hello world")
 	if textRow2.GetString("\t") != "\thello world" {
 		t.Error("GetString failed")
+	}
+}
+
+func Test_TextRow_AppendText(t *testing.T) {
+	row := NewTextRow(0, "hello")
+	row.AppendText(" world")
+	if row.GetText() != "hello world" {
+		t.Error("AppendText failed")
 	}
 }
 
