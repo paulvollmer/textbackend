@@ -11,8 +11,36 @@ func Test_TextRow_NewTextRow(t *testing.T) {
 	if row.GetLevel() != 1 {
 		t.Error("TextRow.GetLevel() not equal")
 	}
-	if string(row.GetText()) != "hello world" {
+	if row.GetText() != "hello world" {
 		t.Error("TextRow.GetText() not equal")
+	}
+	if row.GetTextLength() != 11 {
+		t.Error("TextRow.GetTextLength() not equal")
+	}
+}
+
+var testTableNewTextRowFromString = []struct {
+	text          string
+	ws            string
+	expectedLevel uint8
+	expectedText  string
+}{
+	{"hello", "\t", 0, "hello"},
+	{"\t\thello", "\t", 2, "hello"},
+	{"\t\thello world", "\t", 2, "hello world"},
+	{"\t\thello\tworld", "\t", 2, "hello\tworld"},
+	{"\t\t hello\tcrazy\tworld\t", "\t", 2, " hello\tcrazy\tworld\t"},
+}
+
+func Test_TextRow_NewTextRowFromString(t *testing.T) {
+	for k, tt := range testTableNewTextRowFromString {
+		row := NewTextRowFromString(tt.text, tt.ws)
+		if row.Level != tt.expectedLevel {
+			t.Error(k, "NewTextRowFromString Level not equal")
+		}
+		if row.Text != tt.expectedText {
+			t.Error(k, "NewTextRowFromString Text not equal")
+		}
 	}
 }
 
@@ -44,6 +72,16 @@ func Test_TextRow_AppendText(t *testing.T) {
 	row.AppendText(" world")
 	if row.GetText() != "hello world" {
 		t.Error("AppendText failed")
+	}
+}
+
+func Test_TextRow_EqualTo(t *testing.T) {
+	row := NewTextRow(0, "hello")
+	if row.EqualTo("hello") == false {
+		t.Error("TextRow.TextEqualTo() not equal, expected true")
+	}
+	if row.EqualTo("hello broken") == true {
+		t.Error("TextRow.TextEqualTo() not equal, expected false")
 	}
 }
 

@@ -113,12 +113,53 @@ func Test_TextContent_GetJSON(t *testing.T) {
 	}
 }
 
+var testTableWriteFile = []struct {
+	level    uint8
+	text     []string
+	filename string
+}{
+	{
+		0,
+		[]string{"hello world"},
+		"test1.txt",
+	},
+	{
+		2,
+		[]string{"hello world", "some more lines"},
+		"test2.txt",
+	},
+}
+
 func Test_TextContent_WriteFile(t *testing.T) {
-	textContent := NewTextContent()
-	textContent.Writeln("hello world")
-	err := textContent.WriteFile("test.txt", 0666, "\n", "\t")
-	if err != nil {
-		t.Error("Writefile failed")
+	for k, tt := range testTableWriteFile {
+		textContent := NewTextContent()
+		textContent.SetLevel(tt.level)
+		for _, tttext := range tt.text {
+			textContent.Writeln(tttext)
+		}
+		err := textContent.WriteFile(tt.filename, 0666, "\n", "\t")
+		if err != nil {
+			t.Error(k, "Writefile failed")
+		}
+	}
+}
+
+func Test_TextContent_ReadFile(t *testing.T) {
+	for k, tt := range testTableWriteFile {
+		textContent, err := ReadFile(tt.filename, "\t", "\n")
+		if err != nil {
+			t.Error(k, "ReadFile failed")
+		}
+		if textContent.GetTotalLines() != len(tt.text)+1 { // +1 because there is an empty line at the end of the text
+			t.Error(k, "ReadFile.GetTotalLines not equal")
+		}
+	}
+}
+
+func Test_TextContent_ReadFile_Error(t *testing.T) {
+	_, err := ReadFile("no.file", "\t", "\n")
+	if err == nil {
+		t.Error("ReadFile missing error")
 	}
 }
 

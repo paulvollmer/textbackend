@@ -1,5 +1,12 @@
 # Changelog
 
+**v0.1.1**
+- add TextRow.EqualTo
+- add TextRow.GetTextLength
+- add TextRow.NewTextRowFromString
+- add TextContent.ReadFile
+- add TextContent.AppendRow
+
 **v0.1.0**
 - add WriteFile func to TextContent
 - add AppendText to TextRow
